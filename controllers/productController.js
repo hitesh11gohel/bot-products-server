@@ -95,7 +95,7 @@ exports.updateProduct = async (req, res) => {
     const url = req.protocol + "://" + req.get("host");
     let imageData;
     if (req.file) {
-      imageData = url + "/userProfiles/" + req.file.filename;
+      imageData = url + "/upload/" + req.file.filename;
     }
     const response = await ProductModel.findByIdAndUpdate(
       req.params.id,
