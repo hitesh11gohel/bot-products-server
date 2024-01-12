@@ -84,12 +84,13 @@ exports.getById = async (req, res) => {
 
 exports.update = async (req, res) => {
   try {
-    const isEmailExist = await UserModel.findOne({ email: req.body.email });
-
-    if (isEmailExist) {
-      return res.status(422).json({ error: "email already exist" });
-    } else if (!emailRegex.test(req.body.email)) {
-      return res.status(400).json({ error: "Invalid email format" });
+    if (req.body.email) {
+      const isEmailExist = await UserModel.findById(req.params.id);
+      if (isEmailExist) {
+        return res.status(422).json({ error: "email already exist" });
+      } else if (!emailRegex.test(req.body.email)) {
+        return res.status(400).json({ error: "Invalid email format" });
+      }
     }
 
     const url = req.protocol + "://" + req.get("host");

@@ -3,8 +3,8 @@ const { ProductModel } = require("../models");
 
 exports.getAllProducts = async (req, res) => {
   try {
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 5;
+    const page = parseInt(req.query.page);
+    const limit = parseInt(req.query.limit);
     const productType = req.query.filter;
     const searchTerm = req.query.search;
     const userId = new mongoose.Types.ObjectId(req.user.id);
